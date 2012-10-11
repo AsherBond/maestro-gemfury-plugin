@@ -11,6 +11,7 @@ $:.push File.expand_path("../src", __FILE__)
 CLEAN.include("manifest.json", "*-plugin.zip","vendor","package")
 
 task :default => [:clean, :bundle, :spec, :package]
+task :all => [:clean, :bundle, :spec, :package]
 
 desc "Run specs"
 RSpec::Core::RakeTask.new do |t|
