@@ -1,0 +1,50 @@
+[
+    {
+      "name" : "Gemfury push",
+      "description" : "Push gems to Gemfury",
+      "license" : "Apache License 2.0",
+      "author" : "Carlos Sanchez",
+      "version" : "1.0-SNAPSHOT",
+      "class" : "MaestroDev::GemfuryWorker",
+      "type" : "ruby",
+      "dependencies" : [ {
+        "name" : "gemfury",
+        "version" : "0.4.9",
+        "source" : "http://rubygems.org/"
+      } ],
+      "task" : {
+        "command" : "/gemfury/push",
+        "inputs" : {
+          "account" : {
+            "required" : true,
+            "type" : "String",
+            "value" : null,
+            "description" : "Gemfury account name"
+          },
+          "user_api_key" : {
+            "required" : true,
+            "type" : "Password",
+            "value" : null,
+            "description" : "Gemfury API key"
+          },
+          "file" : {
+            "required" : true,
+            "type" : "String",
+            "value" : "./pkg/*.gem",
+            "description" : "Gems to push. Accepts wildcards"
+          }
+        },
+        "outputs" : {},
+        "tool_name" : "Package",
+        "icon" : "gemfury.png"
+      },
+      "source_types": [
+        {
+          "name" : "gemfury",
+          "options" : {
+            "account": "String",
+            "user_api_key": "Password"
+          }
+        }]
+    }
+]
