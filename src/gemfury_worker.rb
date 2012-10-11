@@ -45,7 +45,7 @@ module MaestroDev
     end
 
     def find_gems(file)
-      Dir.glob(file)
+      Dir.glob(file).sort
     end
 
   end
