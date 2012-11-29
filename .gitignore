@@ -1,10 +1,9 @@
-Gemfile.lock
 target/
 .idea/
 *.iml
 .bundle
 vendor
 package
-maestro-gemfury-plugin-*.zip
+maestro-*-plugin-*.zip
 tmp/
 manifest.json
