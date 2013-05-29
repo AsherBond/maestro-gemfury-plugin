@@ -1,4 +1,4 @@
-require 'maestro_agent'
+require 'maestro_plugin'
 require 'gemfury'
 
 module MaestroDev

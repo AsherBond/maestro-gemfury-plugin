@@ -1,17 +1,10 @@
-source :rubygems
-source "https://gems.gemfury.com/19mFQpkpgWC8xqPZVizB/"
+source 'https://rubygems.org'
 
-gem 'maestro_agent', '~>1.3.0'
-
-#dependencies
+gem 'maestro_plugin'
 gem "gemfury", ">=0.4.9"
 
 group :development do
-  gem 'zippy'
-  gem 'bundler', '>=1.0.21'
-  gem 'rake'
-  gem 'nokogiri'
-  gem 'git'
+  gem 'maestro-plugin-rake-tasks'
 end
 
 group :test do
