@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe MaestroDev::GemfuryWorker do
+describe MaestroDev::GemfuryPlugin::GemfuryWorker do
   before :all do
-    @test_participant = MaestroDev::GemfuryWorker.new
+    @test_participant = MaestroDev::GemfuryPlugin::GemfuryWorker.new
   end
 
   it "should find all gems" do

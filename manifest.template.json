@@ -5,7 +5,7 @@
       "license" : "Apache License 2.0",
       "author" : "Carlos Sanchez",
       "version" : "1.0-SNAPSHOT",
-      "class" : "MaestroDev::GemfuryWorker",
+      "class" : "MaestroDev::GemfuryPlugin::GemfuryWorker",
       "type" : "ruby",
       "dependencies" : [ {
         "name" : "gemfury",
