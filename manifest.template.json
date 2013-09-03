@@ -1,11 +1,12 @@
-[
-    {
+{
+  "image": "gemfury.png",
+  "tasks": [{
       "name" : "Gemfury push",
       "description" : "Push gems to Gemfury",
       "license" : "Apache License 2.0",
       "author" : "Carlos Sanchez",
       "version" : "1.0-SNAPSHOT",
-      "class" : "MaestroDev::GemfuryPlugin::GemfuryWorker",
+      "class" : "MaestroDev::Plugin::GemfuryWorker",
       "type" : "ruby",
       "dependencies" : [ {
         "name" : "gemfury",
@@ -46,5 +47,5 @@
             "user_api_key": "Password"
           }
         }]
-    }
-]
+    }]
+}

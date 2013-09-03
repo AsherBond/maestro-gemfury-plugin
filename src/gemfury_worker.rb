@@ -2,53 +2,47 @@ require 'maestro_plugin'
 require 'gemfury'
 
 module MaestroDev
-  module GemfuryPlugin
+  module Plugin
     class GemfuryWorker < Maestro::MaestroWorker
-  
-      def validate_fields
-        required_fields = ["account", "user_api_key", "file"]
-        errors = []
-        required_fields.each{|s|
-          errors << "missing #{s}" if get_field(s).nil? || get_field(s).empty?
-        }
-        return errors
-      end
-  
+
       def push
-        Maestro.log.info "Starting Gemfury Worker"
-  
-        errors = validate_fields
-        unless errors.empty?
-          msg = "Not a valid fieldset, #{errors.join("\n")}"
-          Maestro.log.error msg
-          set_error msg
-          return
-        end
-  
-        client = connect(get_field("user_api_key"), get_field("account"))
-  
-        find_gems(get_field("file")).each do |gem|
-          msg = "Uploading #{gem} to Gemfury"
-          Maestro.log.debug msg
-          write_output "#{msg}... "
-  
+        validate_parameters
+
+        client = connect
+
+        find_gems.each do |gem|
+          write_output("\nUploading #{gem} to Gemfury...", :buffer => true)
           client.push_gem(File.new(gem))
-  
-          Maestro.log.info "Uploaded #{gem} to Gemfury"
-          write_output "uploaded\n"
+          write_output "complete"
         end
-  
-        Maestro.log.info "Completed Gemfury worker"
       end
-  
-      def connect(api_key, account)
-        Gemfury::Client.new(:user_api_key => api_key, :account => account)
+
+      ###########
+      # PRIVATE #
+      ###########
+
+      def connect
+        Gemfury::Client.new(:user_api_key => @user_api_key, :account => @account)
       end
-  
-      def find_gems(file)
-        Dir.glob(file).sort
+
+      def find_gems
+        Dir.glob(@file).sort
       end
-  
+
+      def validate_parameters
+        errors = []
+
+        @account = get_field('account', '')
+        @user_api_key = get_field('user_api_key', '')
+        @file = get_field('file', '')
+
+        errors << 'missing field account' if @account.empty?
+        errors << 'missing field user_api_key' if @user_api_key.empty?
+        errors << 'missing field file' if @file.empty?
+
+        raise ConfigError, "Config Errors: #{errors.join(', ')}" unless errors.empty?
+      end
+
     end
   end
 end
